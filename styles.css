@@ -23,6 +23,7 @@ background-size: cover;
     align-items: center;
     flex-direction: column;
     margin-top: 3rem;
+    padding: 5px;
 }
 
 .heading{
