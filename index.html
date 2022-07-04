@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.debug.js"></script>
+    <script src="variables.js"></script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="heading">BONAFIDE CERTIFICATE FORM</h1>
+      <div class="name-container">
+        <label class="label" for="fname">ENTER YOUR FIRSTNAME : </label>
+        <input id="fname" name="fname" type="text" />
+      </div>
+      <div class="name-container">
+        <label class="label" for="sname">ENTER YOUR SURNAME : </label>
+        <input id="sname" name="sname" type="text" />
+      </div>
+      <div class="reg-container">
+        <label class="label" for="number">ENTER YOUR REGISTER NUMBER : </label>
+        <input id="number" name="reg" type="number" />
+      </div>
+      <button class="generate-btn" id="btn">GENERATE</button>
+    </div>
+  </body>
+  <script>
+    var img1 = logo;
+    var stamp = stamp;
+    let fname;
+    let sname;
+    let reg;
+    document.getElementById("fname").onchange = () => {
+      fname = document.getElementById("fname").value;
+      fname = fname.toUpperCase();
+    };
+    document.getElementById("sname").onchange = () => {
+      sname = document.getElementById("sname").value;
+      sname = sname.toUpperCase();
+    };
+    document.getElementById("number").onchange = () => {
+      reg = document.getElementById("number").value;
+      reg = reg.toUpperCase();
+    };
+    var date = new Date();
+    const months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    var month = months[date.getMonth()];
+    document.getElementById("btn").onclick = () => {
+      console.log(name);
+      var doc = new jsPDF();
+      doc.setFont("arial", "bold");
+      doc.addImage(img1, 20, 5, 150, 50);
+      doc.setTextColor(49, 40, 74);
+      doc.setFontSize(11);
+      doc.text(
+        38,
+        62,
+        "Accredited A Grade by NAAC | 12B Status by UGC | Approved by AICTE"
+      );
+      doc.setDrawColor(250, 37, 82);
+      doc.setLineWidth(0.5);
+      doc.line(15, 65, 200, 65);
+      doc.text(82, 69, "www.sathyabama.ac.in");
+      doc.line(15, 71, 200, 71);
+      doc.setFontSize(16);
+      doc.text(158, 84, `${date.getDate()} ${month} , ${date.getFullYear()}`);
+      doc.setFontSize(25);
+      doc.text(55, 110, "BONAFIDE CERTIFICATE");
+      doc.setFontSize(14);
+      doc.setFont("arial", "bold");
+      doc.text(
+        45,
+        130,
+        `This is to certify that Mr. ${fname} ${sname}, Register Number`
+      );
+      doc.text(
+        30,
+        143,
+        `${reg} is a Bonafide student of the institution pursuing 3rd year`
+      );
+      doc.text(
+        30,
+        156,
+        `BACHELOR OF ENGINEERING  in  COMPUTER SCIENCE AND EN-`
+      );
+      doc.text(
+        30,
+        169,
+        `-GINEERING during the academic year  2022 - 2023  . He will be`
+      );
+      doc.text(30, 182, `completing the course in 2024 .`);
+      doc.addImage(stamp, 90, 190, 100, 100);
+      doc.save(`${reg}.pdf`);
+    };
+  </script>
+</html>
